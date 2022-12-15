@@ -1,0 +1,33 @@
+﻿@using System.Web.Helpers;
+@using Newtonsoft.Json
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <form action="/action_page.php">
+    <label for="drinks">Choisissez une boisson:</label>
+    <select id="drinkSelect" name="drinks">
+        @foreach (var d in @ViewBag.Drinks)
+        {
+            <option value=@d.Key>@d.Value.Name</option>
+        }
+        </select>
+</form>
+</div>
+<button type="button" onclick="getDrink()">Choisir cette boisson</button>
+
+
+<script>
+
+function getDrink() {
+    var url = "/GetDrinkPrice";
+    var drinkId = document.getElementById("drinkSelect").value;
+    var a = $.get(url, { drinkId : drinkId}
+, function (data) {  
+            $("#rData").html(data);
+            alert("Le prix est de " + data + "€");
+        });
+}
+
+</script>
