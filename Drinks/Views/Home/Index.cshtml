@@ -26,7 +26,7 @@ function getDrink() {
     var a = $.get(url, { drinkId : drinkId}
 , function (data) {  
             $("#rData").html(data);
-            alert("Le prix est de " + data + "€");
+            alert("Le prix de cette boisson est de " + data + "€");
         });
 }
 
